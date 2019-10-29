@@ -24,8 +24,7 @@ import com.google.android.material.tabs.TabLayout;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LlegadaFragment extends Fragment implements OnMapReadyCallback {
-    private GoogleMap map;
+public class LlegadaFragment extends Fragment {
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -40,17 +39,14 @@ public class LlegadaFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_llegada, container, false);
-
-        SupportMapFragment mapFragment = (SupportMapFragment)getChildFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        viewPager = rootView.findViewById(R.id.viewpager);
+        tabLayout = rootView.findViewById(R.id.tabs);
+        adapter = new TabAdapter(getChildFragmentManager());
+        adapter.addFragment(new Llegada2Fragment(), "Llegada");
+        adapter.addFragment(new ContactosFragment(), "Contactos");
+        adapter.addFragment(new InformacionFragment(), "Detalles");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
         return rootView;
-    }
-
-    public void onMapReady(GoogleMap googleMap){
-        map=googleMap;
-        LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
