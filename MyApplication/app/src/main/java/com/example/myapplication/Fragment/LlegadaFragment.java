@@ -4,6 +4,8 @@ package com.example.myapplication.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -47,6 +49,10 @@ public class LlegadaFragment extends Fragment {
         adapter.addFragment(new InformacionFragment(), "Detalles");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        adapter.get
+
+
         return rootView;
     }
 }
