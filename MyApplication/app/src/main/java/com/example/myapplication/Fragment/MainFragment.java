@@ -39,27 +39,22 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         lle=rootView.findViewById(R.id.llegada);
-        Lleg();
+        viewPager = rootView.findViewById(R.id.viewpager);
+        tabLayout = rootView.findViewById(R.id.tabs);
+        Lleg(rootView);
         return rootView;
     }
-    public void Lleg(){
+    public void Lleg(View view){
 
         lle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager = v.findViewById(R.id.viewpager);
-                tabLayout = v.findViewById(R.id.tabs);
-
-
                 adapter = new TabAdapter(getChildFragmentManager());
                 adapter.addFragment(new Llegada2Fragment(), "Llegada");
                 adapter.addFragment(new ContactosFragment(), "Contactos");
                 adapter.addFragment(new InformacionFragment(), "Detalles");
                 viewPager.setAdapter(adapter);
                 tabLayout.setupWithViewPager(viewPager);
-
-                Toast.makeText(getActivity(),"rer",Toast.LENGTH_LONG).show();
-
                 Llegada2Fragment vista1Fragment = new Llegada2Fragment();
                 FragmentManager fragmentManager = getChildFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
